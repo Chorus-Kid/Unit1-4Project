@@ -1,12 +1,36 @@
 //precode setup
 import java.lang.Math;
+/**
+ * This is where the ship name and compatibility percent is generated!
+ */
 public class Shipping {
-    //private variables
     private boolean shareLetter;
     private String shipName;
-    //default constructor
+
+    /**
+     * Creates an instance of someone wanting to ship two people whenever the code boots up
+     */
     public Shipping() {}
-    //methods
+
+    /**
+     *Creates the portmanteau of the two names the user wants to combine
+     * @param name1 represents the first name
+     * @param name2 represents the second name
+     * @return returns the smushed together name.
+     * The basis of how to combine names are different depending on if the two names have shared letters and the length of the names
+     * If both names have a common letter, they will be combined by that letter (i.e. Akito + Toya = Akitoya)
+     * If both names do NOT have a common letter and both name1 and name2 have at least 4 letters in their name
+     * the ship name will be the first 4 letters of name1 and the last 4 letters of name2
+     * (i.e. Cabanela + Yomie = Cabaomie)
+     * However, if either name1 or name2 is less than 4 letters long, the full name of whichever one is shorter will replace the first n letters of the longer name
+     * regardless if they have a shared letter or not
+     * (i.e. Tsukasa + Rui = Ruikasa)
+     * If both name1 and name2 have 4 or fewer letters in both of them, then the full names will be smushed together (i.e. Rui + Nene = Ruinene)
+     * If the first letter of both names are the same, then the ship name will be "The [insert first letter here]'s!!!"
+     * (i.e. An + Akito = The A's!!!)
+     * If the names are the exact same (aka the user put the same person twice, then the name will be "Just [insert name here]"
+     * (i.e. Monika + Monika = Just Monika)
+     */
     public String shipNameGenerator(String name1, String name2) {
         shipName = " ";
         shareLetter = false;
@@ -21,12 +45,14 @@ public class Shipping {
                 for (int j = 0; j < name2.length(); j++) {
                     if (name2.charAt(j) == name1.charAt(i) && name2.charAt(name2.length() - 1) != name1.charAt(i)) {
                         shareLetter = true;
+                        name2 = name2.toLowerCase();
                         shipName = name1.substring(0, i) + name2.substring(j);
                         return shipName;
                     }
                 }
             }
             if (shareLetter == false) {
+                name2 = name2.toLowerCase();
                 shipName = name1.substring(0, 4) + name2.substring(name2.length() - 4, name2.length());
             }
             return shipName;
@@ -37,85 +63,61 @@ public class Shipping {
         else if (name1.length() > 4 && name2.length() < 4) {
             shipName = name2 + (name1.substring(name2.length()));
         }
-        else if (name1.length() > 4 && name2.length() > 4) {
-            shipName = (name1.substring(0, 5) + name2.substring(0, 5));
-        }
         else if (name1.length() <= 4 && name2.length() <= 4) {
+            name2.toLowerCase();
             shipName = name1 + name2;
         }
         return shipName;
     }
-    //just in case someone has numbers as their name
+
+    /**
+     * This method follows most of the same rules as above. This is in case name1 is fully composed of numbers.
+     * @param name1 represents the first name (full of numbers)
+     * @param name2 represents the second name
+     * @return returns the portmanteau following the same rules as above without the shared letters of course
+     */
     public String shipNameGenerator(int name1, String name2) {
         shipName = " ";
-        shareLetter = false;
         String nameOne = Integer.toString(name1);
-        if (nameOne.substring(0, 1).equals(name2.substring(0, 1))) {
-            shipName = "The " + nameOne.substring(0, 1) + "'s!!!";
-        }
-        else if (nameOne.length() >= 4 && name2.length() >= 4) {
-            for (int i = 0; i < nameOne.length(); i++) {
-                for (int j = 0; j < name2.length(); j++) {
-                    if (name2.charAt(j) == nameOne.charAt(i)) {
-                        shareLetter = true;
-                        shipName = nameOne.substring(0, i) + name2.substring(j);
-                    }
-                }
-            }
-            if (shareLetter == false) {
-                shipName = nameOne.substring(0, 4) + name2.substring(name2.length() - 4, name2.length());
-            }
-            return shipName;
-        }
-        else if (nameOne.length() < 4 && name2.length() > 4) {
+        if (nameOne.length() < 4 && name2.length() > 4) {
             shipName = name1 + (name2.substring(nameOne.length()));
         }
         else if (nameOne.length() > 4 && name2.length() < 4) {
             shipName = name2 + (nameOne.substring(name2.length()));
-        }
-        else if (nameOne.length() > 4 && name2.length() > 4) {
-            shipName = (nameOne.substring(0, 5) + name2.substring(0, 5));
         }
         else if (nameOne.length() <= 4 && name2.length() <= 4) {
             shipName = name1 + name2;
         }
         return shipName;
     }
+
+    /**
+     * The same as the method before except in this case name2 is the name that's only numbers
+     * @param name1 represents the first name
+     * @param name2 represents the second name (full of numbers)
+     * @return returns the portmanteau following the same rules as above without the shared letters of course
+     */
     public String shipNameGenerator(String name1, int name2) {
         shipName = " ";
-        shareLetter = false;
         String nameTwo = Integer.toString(name2);
-        if (name1.substring(0, 1).equals(nameTwo.substring(0, 1))) {
-            shipName = "The " + name1.substring(0, 1) + "'s!!!";
-        }
-        else if (name1.length() >= 4 && nameTwo.length() >= 4) {
-            for (int i = 0; i < name1.length(); i++) {
-                for (int j = 0; j < nameTwo.length(); j++) {
-                    if (nameTwo.charAt(j) == name1.charAt(i)) {
-                        shareLetter = true;
-                        shipName = name1.substring(0, i) + nameTwo.substring(j);
-                    }
-                }
-            }
-            if (shareLetter == false) {
-                shipName = name1.substring(0, 4) + nameTwo.substring(nameTwo.length() - 4, nameTwo.length());
-            }
-            return shipName;
-        }
-        else if (name1.length() < 4 && nameTwo.length() > 4) {
+        if (name1.length() < 4 && nameTwo.length() > 4) {
             shipName = name1 + (nameTwo.substring(name1.length()));
         }
         else if (name1.length() > 4 && nameTwo.length() < 4) {
             shipName = name2 + (name1.substring(nameTwo.length()));
-        }
-        else if (name1.length() > 4 && nameTwo.length() > 4) {
-            shipName = (name1.substring(0, 5) + nameTwo.substring(0, 5));
         }
         else if (name1.length() <= 4 && nameTwo.length() <= 4) {
             shipName = name1 + name2;
         }
         return shipName;
     }
+
+    /**
+     * In the case both names are entirely composed of numbers
+     * @param name1 represents the first name (full of numbers)
+     * @param name2 represents the second name (also full of numbers)
+     * @return returns the portmanteau with the same rules as the first method
+     */
     public String shipNameGenerator(int name1, int name2) {
         shipName = " ";
         shareLetter = false;
@@ -144,14 +146,18 @@ public class Shipping {
         else if (nameOne.length() > 4 && nameTwo.length() < 4) {
             shipName = name2 + (nameOne.substring(nameTwo.length()));
         }
-        else if (nameOne.length() > 4 && nameTwo.length() > 4) {
-            shipName = (nameOne.substring(0, 5) + nameTwo.substring(0, 5));
-        }
         else if (nameOne.length() <= 4 && nameTwo.length() <= 4) {
             shipName = nameOne + name2;
         }
         return shipName;
     }
+
+    /**
+     * This method prints a randomly generated percent and a comment that goes along with the percent.
+     * If the names are the exact same, then the generator will print a special percent and comment.
+     * @param name1 represents the first name. It's only here to check if the names are the exact same.
+     * @param name2 represents the second name. It's only here to check if the names are the exact same.
+     */
     public void compatibilityPercent(String name1, String name2) {
         if (name1.equals(name2)) {
             System.out.println("Y'know what? Frick romance.\n∞%\nHappiness comes from within, not from someone else \uD83D\uDE0E\nYou don't need to be in love to be happy!");

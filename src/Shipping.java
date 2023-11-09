@@ -1,4 +1,3 @@
-//precode setup
 import java.lang.Math;
 /**
  * This is where the ship name and compatibility percent is generated!

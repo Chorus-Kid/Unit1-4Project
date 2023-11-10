@@ -7,11 +7,11 @@ public class Main {
         System.out.println("After that, it will tell you how compatible they are!");
         System.out.println("Btw this ship name generator is a prototype and might generate an... interesting name.");
         System.out.println("In the case of this event, have fun with figuring out the pronunciation!");
-        System.out.print("Enter first person's name here (Must be capitalized): ");
+        System.out.print("Enter first person's name here (Preferably capitalized): ");
         String firstName = s.nextLine();
-        System.out.print("Enter second person's name here (Also must be capitalized): ");
+        System.out.print("Enter second person's name here (Preferably capitalized): ");
         String secondName = s.nextLine();
         System.out.println(shipName.shipNameGenerator(firstName, secondName));
-        shipName.compatibilityPercent(firstName, secondName);
+        System.out.println(shipName.compatibilityPercent(firstName, secondName));
     }
 }

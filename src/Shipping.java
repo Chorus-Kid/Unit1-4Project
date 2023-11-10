@@ -52,7 +52,7 @@ public class Shipping {
             }
             if (shareLetter == false) {
                 name2 = name2.toLowerCase();
-                shipName = name1.substring(0, 4) + name2.substring(name2.length() - 4, name2.length());
+                shipName = name1.substring(0, 4) + name2.substring(name2.length() - 4);
             }
             return shipName;
         }
@@ -63,7 +63,7 @@ public class Shipping {
             shipName = name2 + (name1.substring(name2.length()));
         }
         else if (name1.length() <= 4 && name2.length() <= 4) {
-            name2.toLowerCase();
+            name2 = name2.toLowerCase();
             shipName = name1 + name2;
         }
         return shipName;
@@ -157,41 +157,56 @@ public class Shipping {
      * @param name1 represents the first name. It's only here to check if the names are the exact same.
      * @param name2 represents the second name. It's only here to check if the names are the exact same.
      */
-    public void compatibilityPercent(String name1, String name2) {
+    public String compatibilityPercent(String name1, String name2) {
         if (name1.equals(name2)) {
-            System.out.println("Y'know what? Frick romance.\n∞%\nHappiness comes from within, not from someone else \uD83D\uDE0E\nYou don't need to be in love to be happy!");
-        }
-        else if (!name1.equals(name2)){
+            String celibacySWEEP = "Y'know what? Frick romance.\n∞%\nHappiness comes from within, not from someone else \uD83D\uDE0E\nYou don't need to be in love to be happy!";
+            return celibacySWEEP;
+        } else if (!name1.equals(name2)) {
             int percent = (int) (Math.random() * 100);
             if (percent == 0) {
-                System.out.print("0%\nEUGH absolutely abhorrent. Shame on you if you ship this.");
+                String die = "0%\nEUGH absolutely abhorrent. Shame on you if you ship this.";
+                return die;
             } else if (percent == 100) {
-                System.out.print("100%!!!!!\nThey're literally perfect for each other!!!!!");
+                String LIVE = "100%!!!!!\nThey're literally perfect for each other!!!!!";
+                return LIVE;
             } else if (percent <= 99 && percent >= 95) {
-                System.out.print(percent + "%\nThey're married with kids and they told me this themselves trust me");
+                String married = percent + "%\nThey're married with kids and they told me this themselves trust me";
+                return married;
             } else if (percent <= 94 && percent >= 90) {
-                System.out.print(percent + "%\nYour ship is basically canon at this point");
+                String canon = percent + "%\nYour ship is basically canon at this point";
+                return canon;
             } else if (percent <= 89 && percent >= 80) {
-                System.out.print(percent + "%\nYour ship must be pretty popular if it's this compatible");
+                String popular = percent + "%\nYour ship must be pretty popular if it's this compatible";
+                return popular;
             } else if (percent <= 79 && percent >= 70) {
-                System.out.print(percent + "%\nY'know what? That's about a 3 out of 4 chance they'll be good together. Those are some pretty good odds.");
+                String testYourLuck = percent + "%\nY'know what? That's about a 3 out of 4 chance they'll be good together. Those are some pretty good odds.";
+                return testYourLuck;
             } else if (percent == 69) {
-                System.out.print("69%\nNice.");
+                String lennyFace = "69%\nNice.";
+                return lennyFace;
             } else if (percent <= 68 && percent >= 60) {
-                System.out.print(percent + "%\nIt's getting there, yeah. I can see why people would ship this");
+                String mmmmm = percent + "%\nIt's getting there, yeah. I can see why people would ship this";
+                return mmmmm;
             } else if (percent <= 59 && percent >= 50) {
-                System.out.print(percent + "%\nMight or might not be better off as friends tbh");
+                String coinToss = percent + "%\nMight or might not be better off as friends tbh";
+                return coinToss;
             } else if (percent <= 49 && percent >= 40) {
-                System.out.print(percent + "%\nThat's a pretty nice rare pair you got there");
+                String rarePair = percent + "%\nThat's a pretty nice rare pair you got there";
+                return rarePair;
             } else if (percent <= 39 && percent >= 30) {
-                System.out.print(percent + "%\n...\nI mean... they MIGHT be good together...\nNot too sure though...");
+                String maybe = percent + "%\n...\nI mean... they MIGHT be good together...\nNot too sure though...";
+                return maybe;
             } else if (percent <= 29 && percent >= 20) {
-                System.out.print(percent + "%\nYou uhhhh... Sure that they would go well together? You really really sure?");
+                String stretchingIt = percent + "%\nYou uhhhh... Sure that they would go well together? You really really sure?";
+                return stretchingIt;
             } else if (percent <= 19 && percent >= 11) {
-                System.out.print(percent + "%\nHooo BOY you got some weird conceptions about love");
+                String wtf = percent + "%\nHooo BOY you got some weird conceptions about love";
+                return wtf;
             } else if (percent <= 10 && percent >= 1) {
-                System.out.print(percent + "%\nThey uhhhhh... Ummmm...\nIdk what to say");
+                String stop = percent + "%\nThey uhhhhh... Ummmm...\nIdk what to say";
+                return stop;
             }
         }
+        return "how'd you get here";
     }
 }
